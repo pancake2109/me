@@ -1,43 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Open When</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
+<meta charset="UTF-8">
+<title>For You</title>
+<style>
     body {
-      background: #f5efe6;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #1d1d1d, #000);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Poppins', sans-serif;
+        color: white;
     }
+
     .box {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 360px;
-      text-align: center;
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        gap: 20px;
     }
+
     .letter {
-      display: block;
-      margin: 12px 0;
-      padding: 14px;
-      border-radius: 12px;
-      background: #eee;
-      text-decoration: none;
-      color: #333;
+        height: 100px;
+        width: 100px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
-  </style>
+
+    .letter:hover {
+        transform: translateY(-15px) scale(1.1);
+        background: rgba(255,255,255,0.2);
+    }
+
+    .message {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.85);
+        padding: 40px;
+        text-align: center;
+    }
+
+    .message p {
+        max-width: 600px;
+        margin: auto;
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .close {
+        margin-top: 30px;
+        padding: 10px 20px;
+        background: white;
+        color: black;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+</style>
 </head>
+
 <body>
 
 <div class="box">
-  <h2>Open When</h2>
-  <p>Choose a letter</p>
+    <div class="letter" onclick="openMsg(0)">✉️</div>
+    <div class="letter" onclick="openMsg(1)">✉️</div>
+    <div class="letter" onclick="openMsg(2)">✉️</div>
+    <div class="letter" onclick="openMsg(3)">✉️</div>
+    <div class="letter" onclick="openMsg(4)">✉️</div>
+    <div class="letter" onclick="openMsg(5)">✉️</div>
 </div>
+
+<div class="message" id="msgBox">
+    <p id="msgText"></p>
+    <button class="close" onclick="closeMsg()">Close</button>
+</div>
+
+<script>
+const messages = [
+    "Some people enter your life softly, but they stay in ways you don’t expect.",
+    "You have a calm presence that makes moments feel lighter.",
+    "This letter exists just to remind you that you matter.",
+    "Not everything needs a reason — some connections just feel right.",
+    "You’re doing better than you think you are.",
+    "This is your sign to smile today."
+];
+
+function openMsg(i) {
+    document.getElementById("msgText").innerText = messages[i];
+    document.getElementById("msgBox").style.display = "block";
+}
+
+function closeMsg() {
+    document.getElementById("msgBox").style.display = "none";
+}
+</script>
 
 </body>
 </html>
